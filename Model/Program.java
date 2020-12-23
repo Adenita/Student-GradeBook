@@ -5,14 +5,15 @@ public class Program
    private int programID;
    private String name;
    private Departament departament;
-   private static int count;
+   private int count;
 
 
-   Program(String name, Departament departament)
+   public Program(String name, Departament departament)
    {
        this.name = name;
        this.departament = departament;
        this.programID = count++;
+       count++;
    }
 
    public int getProgramID()

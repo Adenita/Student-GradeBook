@@ -6,7 +6,7 @@ public class Profesor
     private String name;
     private String lastname;
     private Subject subject;
-    private static int count;
+    private static int count = 54300;
 
     public Profesor(String name, String lastname)
     {
@@ -39,5 +39,12 @@ public class Profesor
     {
         return subject;
     }
+
+    
+    public String ToString()
+    {
+        return "Id: " + getProfesorID() + "Name: " + getName() + "Last Name: " + getLastname();
+    }
+
   
 }

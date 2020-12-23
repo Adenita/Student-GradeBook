@@ -7,7 +7,7 @@ public class Student
     private String lastname;
     private Program program;
     private int semester;
-    private static int count;
+    private static int count = 1200;
 
 
     public Student(String name, String lastname, Program program, int semester)

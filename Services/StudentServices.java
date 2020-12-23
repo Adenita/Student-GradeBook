@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DataAccess.Database;
-import Model.Program;
 import Model.Student;
 
 public class StudentServices 
 {
-    public static boolean add(String name, String lastname, Program program, int semester) 
+    public static boolean add(String name, String lastname, int programID, int semester) 
     {
-        Student student = new Student(name, lastname, program, semester);
+        Student student = new Student(name, lastname, ProgramServices.get(programID), semester); 
     
         if (!Contains(student.getStudentID()))
             Database.students.add(student);

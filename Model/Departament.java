@@ -5,9 +5,9 @@ public class Departament
 {
      private int departamentID;
      private String name;
-     private static int count;
+     private static int count = 1000;
     
-    Departament(String name)
+    public Departament(String name)
     {
         this.name = name;
         this.departamentID = count++;

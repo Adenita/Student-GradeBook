@@ -7,7 +7,7 @@ public class Subject
     private String name;
     private Profesor profesor;
     private int ects;
-    private static int count;
+    private int count = 0;
 
     public Subject(String name, Profesor profesor, int semester, int ects)
     {
@@ -16,6 +16,7 @@ public class Subject
         this.semester = semester;
         this.ects = ects;
         this.subjectID = count++;
+        count++;
     }
 
     public Program getProgram()
