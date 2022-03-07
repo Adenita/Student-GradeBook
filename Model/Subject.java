@@ -1,32 +1,17 @@
 package Model;
+// krijon modelin e lendes.
 public class Subject 
 {
     private int subjectID; 
-    private Program program;
-    private int semester;
     private String name;
     private Profesor profesor;
-    private int ects;
-    private int count = 0;
+    private static int count = 10;
 
-    public Subject(String name, Profesor profesor, int semester, int ects)
+    public Subject(String name, Profesor profesor)
     {
         this.name = name;
         this.profesor = profesor;
-        this.semester = semester;
-        this.ects = ects;
         this.subjectID = count++;
-        count++;
-    }
-
-    public Program getProgram()
-    {
-        return program;
-    }
-    
-    public int getSemester()
-    {
-        return semester;
     }
 
     public int getSubjectID()
@@ -44,9 +29,11 @@ public class Subject
         return profesor;
     }
 
-    public int getEcts()
+    public String toString()
     {
-        return ects;
+        return "ID: " + getSubjectID() + " Name: " + getName();
     }
+
+
     
 }
