@@ -1,5 +1,5 @@
 package Model;
-
+//krijon modelin e notes
 public class Grade
 {
     private int grade;
@@ -12,6 +12,7 @@ public class Grade
         this.student = student;
         this.subject = subject;
         this.profesor = profesor;
+        this.grade = grade;
     }
 
 	public int getGrade()
@@ -32,6 +33,10 @@ public class Grade
     public Student getStudent() 
     {
 		return student;
-	}
+    }
+    
+    public String toString()
+    {
+        return "Name: " + getStudent().getName() + " LastName: " + getStudent().getLastname() + " Subject: " + getSubject().getName() + " Nota: " + getGrade();
+    }
 }
- 
