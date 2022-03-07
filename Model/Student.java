@@ -1,35 +1,22 @@
 package Model;
 
+//krijon modelin e studentit.
 public class Student
 {
     private int studentID;
     private String name;
     private String lastname;
-    private Program program;
-    private int semester;
-    private static int count = 1200;
+    private static int count = 100;
 
 
-    public Student(String name, String lastname, Program program, int semester)
+    public Student(String name, String lastname)
     {
         this.name = name;
         this.lastname = lastname;
-        this.semester = semester;
-        this.program = program;
         this.studentID = count++;
     }
 
-    public Program getProgram()
-    {
-        return program;
-    }
-
-    public int getSemester()
-    {
-        return semester;
-    }
-
-    public int getStudentID()
+    public  int getStudentID()
     {
         return studentID;
     }
@@ -44,4 +31,7 @@ public class Student
         return lastname;
     }
    
+    public String toString() {
+        return "ID: " + getStudentID() + " Name: " + getName() + " LastName: " + getLastname();
+    }
 }
