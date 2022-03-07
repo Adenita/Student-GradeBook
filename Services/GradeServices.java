@@ -5,36 +5,56 @@ import java.util.List;
 
 
 import DataAccess.Database;
-import Model.Subject;
 import Model.Grade;
-import Model.Profesor;
-import Model.Student;
-
+//implementon logjiken ne lidhje me sherbimet me nota.
 public class GradeServices 
 {
-
-    public Grade get(int profesorID, int studentID, int lendaID)
+    // merr nje note
+    public Grade get(int profesorID, int studentID, int subjectID)
      {
         for (Grade Grade : Database.grades) 
         {
-            if (Grade.getProfesor().getProfesorID() == profesorID && Grade.getStudent().getStudentID() == studentID  && Grade.getSubject().getSubjectID() == lendaID) 
+            if (Grade.getProfesor().getProfesorID() == profesorID && Grade.getStudent().getStudentID() == studentID  && Grade.getSubject().getSubjectID() == subjectID) 
             {
                 return Grade;
             }
         }
         return null;
     }
-
-    public static void add(int profesorID, int studentID, int lendaID, int grade) 
-    {
-        Student studenti = StudentServices.get(studentID);
-        Profesor profesor = ProfesorServices.get(profesorID);
-        Subject lenda = SubjectServices.get(lendaID);
-
-        Database.grades.add(new Grade(profesor, studenti, lenda, grade));
-    }
     
-    public static List<Grade> getAllGradesOfAStudent(int studentID)
+    // shton nje note ne listen e notave
+    public static boolean add(int profesorID, int studentID, int subjectID, int gradev) 
+    {
+        Grade grade = new Grade(ProfesorServices.get(profesorID), StudentServices.get(studentID), SubjectServices.get(subjectID), gradev);
+        
+        if(ProfesorServices.get(profesorID) == null || StudentServices.get(studentID) == null || SubjectServices.get(subjectID) == null) 
+            return false;
+        
+        Database.grades.add(grade);
+        
+        return true;
+    }
+
+
+    // fshin nje note nga lista e notave
+    public static boolean remove(int studentID, int subjectID)
+    {
+        int index = -1;
+        for (int i = 0; i < Database.grades.size(); i++)  {
+            if((Database.grades.get(i).getStudent().getStudentID() == studentID) && Database.grades.get(i).getSubject().getSubjectID() == subjectID)
+                index = i;
+        }
+        
+        if(index != -1) {
+            Database.grades.remove(index);
+            return true;
+        }
+
+        return false;
+	}
+    
+    // na kthen te gjitha notat e nje studenti
+    public static List<Grade> getAllGradesForAStudent(int studentID)
     {
         List<Grade> rez = new ArrayList<>();
 
@@ -48,9 +68,10 @@ public class GradeServices
         return rez;
     }
 
+    // na kthen noten mesatare te nje studenti
     public static double getAverageGradeForAStudent(int studentID)
     {
-       List<Grade> grade = getAllGradesOfAStudent(studentID);
+       List<Grade> grade = getAllGradesForAStudent(studentID);
        double sum = 0;
        double rez = 0;
        for (int i = 0; i < grade.size(); i++)
@@ -61,6 +82,7 @@ public class GradeServices
        return rez;
     }
 
+    //na kthen te gjitha notat per nje lende 
     public static List<Grade> getAllGradesForASubjet(int subjectID)
     {
         List<Grade> rez = new ArrayList<>();
@@ -73,7 +95,8 @@ public class GradeServices
         }
         return rez;
     }
-
+ 
+    // na kthen noten mesatare per nje lende te caktuar
     public static double getAverageGradeForASubject(int SubjectID)
     {
         List<Grade> grade = getAllGradesForASubjet(SubjectID);
@@ -87,26 +110,6 @@ public class GradeServices
         
         return sum / grade.size();
     }
-
-    public List <Grade> showAllGradesForSubjectOfStudent(int studentID)
-    {
-        List<Grade> grades = new ArrayList<>();
-
-            for (Grade grade : Database.grades) 
-            { 
-                //Database.profesoret.get(index).getProfesorID();
-                if(grade.getStudent().getStudentID() == studentID)   
-                    grades.add(grade);
-                
-            }    
-        return grades;
-    }
-
-
-
-  //grading????
-
-
 
 
 }
