@@ -1,12 +1,12 @@
 package Model;
-
+//krijon modelin e profesorit
 public class Profesor
 {
     private int profesorID;
     private String name;
     private String lastname;
     private Subject subject;
-    private static int count = 54300;
+    private static int count = 0;
 
     public Profesor(String name, String lastname)
     {
@@ -41,9 +41,9 @@ public class Profesor
     }
 
     
-    public String ToString()
+    public String toString()
     {
-        return "Id: " + getProfesorID() + "Name: " + getName() + "Last Name: " + getLastname();
+        return "ID: " + getProfesorID() + " Name: " + getName() + " LastName: " + getLastname();
     }
 
   
